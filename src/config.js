@@ -1,46 +1,48 @@
 import path from 'path';
 
 function requiredProcessEnv(name) {
-  if(!process.env[name]) {
-    throw new Error('You must set the ' + name + ' environment variable');
-  }
-  return process.env[name];
+    if (!process.env[name]) {
+        throw new Error('You must set the ' + name + ' environment variable');
+    }
+    return process.env[name];
 }
 
 // All configurations will extend these options
 // ============================================
 var all = {
-  env: process.env.NODE_ENV,
+    env: process.env.NODE_ENV,
 
-  // Root path of server
-  root: path.normalize(__dirname + '/../../..'),
+    // Root path of server
+    root: path.normalize(__dirname + '/../../..'),
 
-  // Server port
-  port: process.env.PORT || 9000,
+    // Server port
+    port: process.env.PORT || 9000,
 
-  // Should we populate the DB with sample data?
-  seedDB: false,
+    // Should we populate the DB with sample data?
+    seedDB: false,
 
-  // Secret for session, you will want to change this and make it an environment variable
-  secrets: {
-    session: 'shhhhhhared-secret'
-  },
-  facebook: {
-    clientID:     process.env.FACEBOOK_ID,
-    clientSecret: process.env.FACEBOOK_SECRET,
-    callbackURL:  (process.env.DOMAIN || '') + '/api/v2/auth/facebook/callback'
-  },
-  // List of user roles
-  userRoles: ['guest', 'user', 'admin'],
+    // Secret for session, you will want to change this and make it an environment variable
+    secrets: {
+        session: 'shhhhhhared-secret'
+    },
+    facebook: {
+        clientID: process.env.FACEBOOK_ID,
+        clientSecret: process.env.FACEBOOK_SECRET,
+        callbackURL: (process.env.DOMAIN || '') + '/api/v2/auth/facebook/callback'
+    },
+    // List of user roles
+    userRoles: ['guest', 'user', 'admin'],
 
-  // MongoDB connection options
-  mongo: {
-    options: {
-      db: {
-        safe: true
-      }
-    }
-  }
+    // MongoDB connection options
+    mongo: {
+        options: {
+            db: {
+                safe: true
+            }
+        }
+    },
+
+    apiDir: '' // The directory from which is read actions. By default /actions
 
 };
 
